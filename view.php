@@ -42,7 +42,7 @@ if (isset($_GET['msg'])) {
                         <a class=" btn btn-sm btn-dark" href="search.php">Search Specific Data </a>
                     </p>
                 </div>
-                <div class="col-lg-12 mx-auto">
+                <div class="col-lg-12 mx-auto" style="  overflow-x: auto;">
 
                     
                         <?php
