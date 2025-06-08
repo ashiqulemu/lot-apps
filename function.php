@@ -1,0 +1,167 @@
+<?php
+ 
+
+class crud
+{
+  private $conn;
+  public function __construct()
+  {
+    $host = 'localhost';
+    $user = 'root';
+    $pass = '';
+    $db = 'lot_management';
+
+    $this->conn = mysqli_connect($host, $user, $pass, $db);
+
+    if (!$this->conn) {
+      die('connection not stablished');
+    }
+
+
+  }
+
+  public function addInfo()
+  {
+    $cn_number = $_POST['cn_number'];
+    $lot_number = $_POST['lot_number'];
+    $lot_selection = $_POST['lot_selection'];
+    $remarks = $_POST['remarks'];
+
+    // $photoName = $_FILES['photo']['name'];
+    // $photoTmpName = $_FILES['photo']['tmp_name'];
+    // $photoSize = $_FILES['photo']['size'];
+    
+
+    // $target_path = 'upload/' . $photoName;
+    // move_uploaded_file($photoTmpName, $target_path);
+
+
+    if (empty($cn_number)) {
+      return "<p class='text-danger alert alert-danger'> must be fillup all the fields! otherwise you cant submit any data! </p>";
+    } else if (empty($lot_number)) {
+      return "<p class='text-danger alert alert-danger'> must be fillup all the fields! otherwise you cant submit any data! </p>";
+    } else if (empty($lot_selection)) {
+      return "<p class='text-danger alert alert-danger'> must be fillup all the fields! otherwise you cant submit any data! </p>";
+    } else if (empty($remarks)) {
+      return "<p class='text-danger alert alert-danger'> must be fillup all the fields! otherwise you cant submit any data! </p>";
+    } else {
+      $query = "insert into infos(cn_number,lot_number,lot_selection,remarks,time)
+      value('$cn_number','$lot_number','$lot_selection','$remarks',NOW())";
+
+      $res = mysqli_query($this->conn, $query);
+
+      if ($res) {
+        return "<h6 class='text-center text-success mb-2 text-capitalize alert alert-success mb-0 '>your data has been successfully inserted!</h6> ";
+      } else {
+        return 'failed';
+      }
+
+    }
+  }
+
+  public function showData()
+  {
+    $query = "select * from infos";
+    return $res = mysqli_query($this->conn, $query);
+
+  }
+
+  public function showDataById($id)
+  {
+    $query = "select * from infos where id='$id'";
+
+    return mysqli_query($this->conn, $query);
+  }
+
+
+  public function update($id)
+  {
+
+    $cn_number = $_POST['update_cn_number'];
+    $lot_number = $_POST['update_lot_number'];
+    $lot_selection = $_POST['update_lot_selection'];
+    $remarks = $_POST['update_remarks']; 
+
+    $query = "UPDATE infos SET cn_number = '$cn_number', lot_number = '$lot_number', lot_selection = '$lot_selection',  remarks = '$remarks', Time = NOW()  WHERE id='$id';";
+
+
+    $res = mysqli_query($this->conn, $query);
+
+    if ($res) {
+
+       header("Location:view.php?msg=data updated");
+     
+    }
+
+  }
+
+  public function destroy($id)
+  {
+    $query = "DELETE FROM infos WHERE id='$id'";
+    $res = mysqli_query($this->conn, $query);
+    if ($res) {
+      header('Location:view.php');
+
+    }
+  }
+
+
+
+  // admin
+
+  public function register_admin()
+  {
+    $name = $_POST['username'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    //  var_dump($name);
+
+    $query = "insert into admin(name,phone,email,password)
+     value('$name','$phone','$email','$password')";
+
+    $res = mysqli_query($this->conn, $query);
+
+    if ($res) {
+      return "<p class='text-success text-center'>User Registered!</p>";
+    } else {
+      return 'failed';
+    }
+
+  }
+
+  public function admin_login()
+  {
+
+    $email = $_POST['email'];
+    $pass = $_POST['password'];
+
+    $query = "select * from admin where email='$email' && password='$pass'";
+
+    $result = mysqli_query($this->conn, $query);
+
+    $t = mysqli_fetch_assoc($result);
+
+     if($t){
+      session_start();
+      $_SESSION['email']= $t['email'];
+      $_SESSION['password']=  $t['password'];
+      header('location:dashboard.php');
+     }else{
+       return 'your info is false';
+     }
+
+   
+   
+
+  }
+
+
+
+}
+
+
+
+
+?>
