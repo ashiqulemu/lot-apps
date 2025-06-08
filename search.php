@@ -2,18 +2,21 @@
 
 
 
-include 'function.php';
+    include 'function.php';
 
-$obj = new crud();
-$singleUser = $obj->showData();
-// var_dump($singleUser)
+    $obj = new crud();
 
-if (isset($_GET['msg'])) {
-    $msg = $_GET['msg'];
-}
+
+    if (isset($_POST['btn-search'])) {
+        $alldata = $obj->searchData(); 
+    }
+
+
 
 
 ?>
+
+
 
 
 <!doctype html>
@@ -23,7 +26,7 @@ if (isset($_GET['msg'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LOT - Apps</title>
-    <link href="./css/bootstrap.min.css" rel="stylesheet" >
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -33,36 +36,35 @@ if (isset($_GET['msg'])) {
         <div class="container">
 
 
-            <div class="row mx-0 my-5 text-uppercase border rounded shadow p-4">
-                <div class="col-lg-12 d-flex justify-content-between">
+            <div class="row mx-0 my-5 text-uppercase">
+                <div class="col-lg-12 mx-auto">
                     <p class=" ">
                         <a class=" btn btn-sm btn-dark" href="index.php">Go back </a>
                     </p>
-                    <p class=" ">
-                        <a class=" btn btn-sm btn-dark" href="search.php">Search Specific Data </a>
-                    </p>
-                </div>
-                <div class="col-lg-12 mx-auto">
-
-                    
+                    <h4>
                         <?php
-                        if (isset($msg)) {
-                            echo "
-                            
-                            <h4 class='text-center mb-4 alert alert-success'>$msg</h4>
-                            
-                            ";
-                             
-                        }
+
+
 
                         ?>
-                    
+                    </h4>
+                    <form action="" method="post">
+                        <div class="row justify-content-between d-flex">
+                            <div>
+                                <b> search By: </b> <input type="text" class="form-control mb-3"
+                                placeholder="CN Number / Lot Number / Time / Lot selection" name="search_cn_number"> 
+                            </div>
+                            <button type="submit" name="btn-search" class="btn btn-success">submit</button>
+                        </div>
+                    </form>
+<br>
+
                     <table class="table table-striped">
                         <tr class="bg-warning fw-bold">
                             <td>CN Number</td>
                             <td>Lot Number</td>
                             <td>Lot Selection</td>
-                            <td width="260">Remarks</td>
+                            <td>Remarks</td>
                             <td>Current Date/Time</td>
                             <td>Action</td>
                         </tr>
@@ -73,15 +75,16 @@ if (isset($_GET['msg'])) {
 
                         <?php
 
-                        
-                            while ($user = mysqli_fetch_assoc($singleUser)) {
+                        if (isset($alldata)) {
+                            // if alldata exist, then apply loop 
+                            while ($user = mysqli_fetch_assoc($alldata)) {
 
                                 ?>
                                 <tr>
                                     <td> <?php echo $user['cn_number']; ?> </td>
                                     <td> <?php echo $user['lot_number']; ?> </td>
                                     <td> <?php echo $user['lot_selection']; ?> </td>
-                                    <td width="260"> <?php echo $user['remarks']; ?> </td>
+                                    <td> <?php echo $user['remarks']; ?> </td>
                                     <td> <?php echo $user['Time']; ?> </td>
 
                                     <td class="d-flex gap-3">
@@ -93,7 +96,8 @@ if (isset($_GET['msg'])) {
                                 </tr>
                                 <?php
                             }
-                         
+
+                        } 
 
 
 
@@ -105,6 +109,9 @@ if (isset($_GET['msg'])) {
 
 
                     </table>
+
+
+
 
                 </div>
             </div>

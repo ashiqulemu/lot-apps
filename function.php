@@ -61,7 +61,7 @@ class crud
 
   public function showData()
   {
-    $query = "select * from infos";
+    $query = "select * from infos ORDER BY Time DESC";
     return $res = mysqli_query($this->conn, $query);
 
   }
@@ -89,11 +89,29 @@ class crud
 
     if ($res) {
 
-       header("Location:view.php?msg=data updated");
+       header("Location:view.php?msg=data updated successfully");
      
     }
 
   }
+
+    public function searchData(){
+
+      $search_cn_number = $_POST['search_cn_number'];
+      
+      $query = "select * from infos where 
+        cn_number='$search_cn_number' or
+        lot_number='$search_cn_number' or
+        Time='$search_cn_number' or
+        lot_selection='$search_cn_number' ";
+
+      $res = mysqli_query($this->conn, $query);
+
+      if($res){
+        return $res; 
+      } 
+
+    }
 
   public function destroy($id)
   {

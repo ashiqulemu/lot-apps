@@ -4,11 +4,11 @@ include 'function.php';
 
 $obj = new crud();
 $id = $_GET['userID'];
-$data = $obj->showDataById($id); 
+$data = $obj->showDataById($id);
 
-   if(isset($_POST['update_btn'])){
-    $msg = $obj->update($id);
-   }
+if (isset($_POST['update_btn'])) {
+  $msg = $obj->update($id);
+}
 
 ?>
 
@@ -39,11 +39,11 @@ $data = $obj->showDataById($id);
 
 
     <form action="" method="post" enctype="multipart/form-data">
-      <div class="col-lg-6 mx-auto">
-     
+      <div class="col-lg-6 mx-auto border  shadow p-4 ">
+
         <?php
 
-        if(isset($msg)){
+        if (isset($msg)) {
           echo $msg;
         }
 
@@ -51,31 +51,36 @@ $data = $obj->showDataById($id);
 
           ?>
 
+          <h4 class="text-center bg-dark text-light py-2  ">UPDATE INFO</h4>
+
           <div class="mb-3">
-            CN Number: <input type="text" class="form-control" value="<?php echo $user['cn_number']; ?>" name="update_cn_number" /> <br>
+            CN Number: <input type="text" class="form-control" value="<?php echo $user['cn_number']; ?>"
+              name="update_cn_number" />  
           </div>
           <div class="mb-3">
-            LOT Number: <input type="text" class="form-control" value="<?php echo $user['lot_number']; ?>" name="update_lot_number" /> <br>
-          </div>
-
-
-
-          <div class="mb-3">
-            
-
-            Current Lot: <span> <?php echo $user['lot_selection']; ?> </span>
-             <select name="update_lot_selection">
+            LOT Number: <input type="text" class="form-control" value="<?php echo $user['lot_number']; ?>"
+              name="update_lot_number" />  
+          </div> 
+          <div class="mb-3"> 
+            <p>
+              Current selected Lot: <span class="bg-dark text-light px-3 rounded-2" > <?php echo $user['lot_selection']; ?> </span>
+            </p>
+            Update Lot : 
+            <select name="update_lot_selection" class="form-control">
               <option value="GC">GC</option>
               <option value="MC">MC</option>
               <option value="DC">DC</option>
             </select>
           </div>
           <div class="mb-3">
-            Remarks: <input type="text" class="form-control" value="<?php echo $user['remarks']; ?>" name="update_remarks" /> <br>
+            Remarks: 
+            <input class="form-control"
+             value="<?php echo $user['remarks']; ?>"
+              name="update_remarks"> 
           </div>
-         
+
           <div class="mb-3">
-            <button type="submit" name="update_btn">update data</button>
+            <button type="submit" name="update_btn" class="btn btn-dark">update data</button>
           </div>
 
 
