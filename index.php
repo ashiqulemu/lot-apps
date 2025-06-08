@@ -50,9 +50,14 @@ if (isset($_POST['btn_submit'])) {
                                 <input type="text" placeholder="Lot Number" name="lot_number" class="form-control">
                                 <select name="lot_selection" id="" class="form-control">
                                     <option value="">--select--</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="B">B</option>
                                     <option value="GC">GC</option>
-                                    <option value="MC">MC</option>
-                                    <option value="DC">DC</option>
+                                    <option value="GL">GL</option>
+                                    <option value="GW">GW</option>
+                                    <option value="GR">GR</option>
+                                    <option value="GE">GE</option>
                                 </select>
                             </div>
                             <div class="form-group mb-3 d-flex gap-1">

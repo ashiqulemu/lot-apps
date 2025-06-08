@@ -55,28 +55,32 @@ if (isset($_POST['update_btn'])) {
 
           <div class="mb-3">
             CN Number: <input type="text" class="form-control" value="<?php echo $user['cn_number']; ?>"
-              name="update_cn_number" />  
+              name="update_cn_number" />
           </div>
           <div class="mb-3">
             LOT Number: <input type="text" class="form-control" value="<?php echo $user['lot_number']; ?>"
-              name="update_lot_number" />  
-          </div> 
-          <div class="mb-3"> 
+              name="update_lot_number" />
+          </div>
+          <div class="mb-3">
             <p>
-              Current selected Lot: <span class="bg-dark text-light px-3 rounded-2" > <?php echo $user['lot_selection']; ?> </span>
+              Current selected Lot: <span class="bg-dark text-light px-3 rounded-2"> <?php echo $user['lot_selection']; ?>
+              </span>
             </p>
-            Update Lot : 
+            Update Lot :
             <select name="update_lot_selection" class="form-control">
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="B">B</option>
               <option value="GC">GC</option>
-              <option value="MC">MC</option>
-              <option value="DC">DC</option>
+              <option value="GL">GL</option>
+              <option value="GW">GW</option>
+              <option value="GR">GR</option>
+              <option value="GE">GE</option>
             </select>
           </div>
           <div class="mb-3">
-            Remarks: 
-            <input class="form-control"
-             value="<?php echo $user['remarks']; ?>"
-              name="update_remarks"> 
+            Remarks:
+            <input class="form-control" value="<?php echo $user['remarks']; ?>" name="update_remarks">
           </div>
 
           <div class="mb-3">
