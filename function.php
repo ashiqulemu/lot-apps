@@ -107,7 +107,7 @@ class crud
         return $res ; 
       }  
 
-    }
+    } 
 
     public function searchDataCount(){ 
       $search_cn_number = $_POST['search_cn_number'];
