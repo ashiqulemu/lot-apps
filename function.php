@@ -99,17 +99,24 @@ class crud
 
       $search_cn_number = $_POST['search_cn_number'];
       
-      $query = "select * from infos where 
-        cn_number='$search_cn_number' or
-        lot_number='$search_cn_number' or
-        Time='$search_cn_number' or
-        lot_selection='$search_cn_number' ";
+      $query = "select DISTINCT * from infos where 
+        cn_number='$search_cn_number'"; 
 
-      $res = mysqli_query($this->conn, $query);
+      $res = mysqli_query($this->conn, $query); 
+      if($res){
+        return $res ; 
+      }  
 
+    }
+
+    public function searchDataCount(){ 
+      $search_cn_number = $_POST['search_cn_number'];
+      $query = "select distinct count(*) from infos where cn_number = $search_cn_number" ; 
+
+      $res = mysqli_query($this->conn, $query); 
       if($res){
         return $res; 
-      } 
+      }  
 
     }
 

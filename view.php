@@ -23,7 +23,7 @@ if (isset($_GET['msg'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LOT - Apps</title>
-    <link href="./css/bootstrap.min.css" rel="stylesheet" >
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -44,19 +44,19 @@ if (isset($_GET['msg'])) {
                 </div>
                 <div class="col-lg-12 mx-auto" style="  overflow-x: auto;">
 
-                    
-                        <?php
-                        if (isset($msg)) {
-                            echo "
+
+                    <?php
+                    if (isset($msg)) {
+                        echo "
                             
                             <h4 class='text-center mb-4 alert alert-success'>$msg</h4>
                             
                             ";
-                             
-                        }
 
-                        ?>
-                    
+                    }
+
+                    ?>
+
                     <table class="table table-striped">
                         <tr class="bg-warning fw-bold">
                             <td>CN Number</td>
@@ -73,27 +73,27 @@ if (isset($_GET['msg'])) {
 
                         <?php
 
-                        
-                            while ($user = mysqli_fetch_assoc($singleUser)) {
 
-                                ?>
-                                <tr>
-                                    <td> <?php echo $user['cn_number']; ?> </td>
-                                    <td> <?php echo $user['lot_number']; ?> </td>
-                                    <td> <?php echo $user['lot_selection']; ?> </td>
-                                    <td width="260"> <?php echo $user['remarks']; ?> </td>
-                                    <td> <?php echo $user['Time']; ?> </td>
+                        while ($user = mysqli_fetch_assoc($singleUser)) {
 
-                                    <td class="d-flex gap-3">
-                                        <a class="btn btn-sm btn-warning"
-                                            href="edit.php?userID=<?php echo $user['id']; ?>">edit</a>
-                                        <a class="btn btn-sm btn-danger" onclick="confirm('really want to delete!');"
-                                            href="delete.php?userID=<?php echo $user['id']; ?>">delete</a>
-                                    </td>
-                                </tr>
-                                <?php
-                            }
-                         
+                            ?>
+                            <tr>
+                                <td> <?php echo $user['cn_number']; ?> </td>
+                                <td> <?php echo $user['lot_number']; ?> </td>
+                                <td> <?php echo $user['lot_selection']; ?> </td>
+                                <td width="260"> <?php echo $user['remarks']; ?> </td>
+                                <td class="time"> <?php echo $user['Time']; ?> </td>
+
+                                <td class="d-flex gap-3">
+                                    <a class="btn btn-sm btn-warning"
+                                        href="edit.php?userID=<?php echo $user['id']; ?>">edit</a>
+                                    <a class="btn btn-sm btn-danger" onclick="confirm('really want to delete!');"
+                                        href="delete.php?userID=<?php echo $user['id']; ?>">delete</a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+
 
 
 
@@ -123,6 +123,16 @@ if (isset($_GET['msg'])) {
         crossorigin="anonymous"></script>
 
     <script>
+        let gettime = document.querySelectorAll(".time");
+
+           
+ 
+
+        gettime.forEach(element => { 
+            console.log(element.innerHTML= element.innerHTML.slice(0,20) )
+        });
+
+       
 
 
         function addLots() {

@@ -8,7 +8,11 @@ $obj = new crud();
 
 
 if (isset($_POST['btn-search'])) {
-    $alldata = $obj->searchData();
+    $alldata = $obj->searchData(); 
+
+ $res = mysqli_fetch_assoc($obj->searchDataCount());
+ 
+    
 }
 
 
@@ -38,21 +42,29 @@ if (isset($_POST['btn-search'])) {
 
             <div class="row mx-0 my-5 text-uppercase">
                 <div class="col-lg-12 mx-auto">
-                    <p class=" ">
-                        <a class=" btn btn-sm btn-dark" href="index.php">Go back </a>
+                    <div class="d-flex justify-content-between flex-wrap">
+                        <p class=" ">
+                        <a class=" btn btn-sm btn-dark" href="view.php">Go back </a>
                     </p>
-                    <h4>
+                    <h6 class="text-end">
                         <?php
 
+                          if(isset($res)){
+                            foreach ($res as $item) {
+                                echo "Total <span class='badge text-bg-success'>$item</span> items found!";
+                            }
+                          }
 
+                                
 
                         ?>
-                    </h4>
+                    </h6>
+                    </div>
                     <form action="" method="post">
                         <div class="row justify-content-between d-flex">
                             <div>
-                                <b> search By: </b> <input type="text" class="form-control mb-3"
-                                    placeholder="CN Number / Lot Number / Time / Lot selection" name="search_cn_number">
+                                <b> search By: </b> <input type="text" required class="form-control mb-3"
+                                    placeholder="CN Number Only" name="search_cn_number">
                             </div>
                             <button type="submit" name="btn-search" class="btn btn-success">submit</button>
                         </div>
@@ -85,7 +97,7 @@ if (isset($_POST['btn-search'])) {
                                         <td> <?php echo $user['lot_number']; ?> </td>
                                         <td> <?php echo $user['lot_selection']; ?> </td>
                                         <td> <?php echo $user['remarks']; ?> </td>
-                                        <td> <?php echo $user['Time']; ?> </td>
+                                        <td > <?php echo $user['Time']; ?> </td>
 
                                         <td class="d-flex gap-3">
                                             <a class="btn btn-sm btn-warning"
@@ -129,6 +141,8 @@ if (isset($_POST['btn-search'])) {
 
     <script>
 
+
+     
 
         function addLots() {
             let maindiv = document.getElementById("main");
