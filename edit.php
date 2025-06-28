@@ -30,16 +30,22 @@ if (isset($_POST['update_btn'])) {
   <title>crud</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body{
+                background-image: linear-gradient(165deg, rgba(82, 39, 176, 0.9490196078) 23%, rgba(108, 3, 193, 0.968627451)), url(images/4863805.png);
+                height: 100vh;
+        }
+    </style>
 </head>
 
 <body>
 
 
-  <div class="row mx-0 my-5 text-uppercase">
+  <div class="row mx-0 my-5 text-uppercase" >
 
 
     <form action="" method="post" enctype="multipart/form-data">
-      <div class="col-lg-6 mx-auto border  shadow p-4 ">
+      <div class="col-lg-6 mx-auto border  shadow p-4 "style="background: #ffffffcc;">
 
         <?php
 

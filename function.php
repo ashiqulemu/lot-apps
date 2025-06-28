@@ -1,4 +1,7 @@
 <?php
+
+
+date_default_timezone_set("Asia/Dhaka");
  
 
 class crud
@@ -25,16 +28,7 @@ class crud
     $cn_number = $_POST['cn_number'];
     $lot_number = $_POST['lot_number'];
     $lot_selection = $_POST['lot_selection'];
-    $remarks = $_POST['remarks'];
-
-    // $photoName = $_FILES['photo']['name'];
-    // $photoTmpName = $_FILES['photo']['tmp_name'];
-    // $photoSize = $_FILES['photo']['size'];
-    
-
-    // $target_path = 'upload/' . $photoName;
-    // move_uploaded_file($photoTmpName, $target_path);
-
+    $remarks = $_POST['remarks']; 
 
     if (empty($cn_number)) {
       return "<p class='text-danger alert alert-danger'> must be fillup all the fields! otherwise you cant submit any data! </p>";
@@ -45,10 +39,12 @@ class crud
     } else if (empty($remarks)) {
       return "<p class='text-danger alert alert-danger'> must be fillup all the fields! otherwise you cant submit any data! </p>";
     } else {
-      $query = "insert into infos(cn_number,lot_number,lot_selection,remarks,time)
-      value('$cn_number','$lot_number','$lot_selection','$remarks',NOW())";
 
+      $query = "insert into infos(cn_number,lot_number,lot_selection,remarks,time)
+      values('$cn_number','$lot_number','$lot_selection','$remarks',NOW())";
+             mysqli_query($this->conn, "SET time_zone = '+06:00'"); // for time zone fix
       $res = mysqli_query($this->conn, $query);
+      
 
       if ($res) {
         return "<h6 class='text-center text-success mb-2 text-capitalize alert alert-success mb-0 '>your data has been successfully inserted!</h6> ";
@@ -64,6 +60,12 @@ class crud
     $query = "select * from infos ORDER BY Time DESC";
     return $res = mysqli_query($this->conn, $query);
 
+  }
+
+  public function totalCount(){
+     $query  = "SELECT COUNT(*) AS total_rows FROM infos";
+     $res = mysqli_query($this->conn, $query);
+    return mysqli_fetch_assoc($res);
   }
 
   public function showDataById($id)

@@ -20,28 +20,30 @@ if (isset($_POST['btn_submit'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LOT - Apps</title>
-       <link href="./css/bootstrap.min.css" rel="stylesheet" >
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/custom.css">
 </head>
 
 <body>
 
-    <section>
+    <section class="container-fluid">
         <div class="container pt-5">
             <div class="row">
                 <div class="col-lg-6 mx-auto">
-                        <h3 class="text-center mb-4">LOT REGISTRATION</h3>
+                    <h1 class="text-center mb-4 text-light" style="font-weight: bold;
+                               font-size: 2.8rem; letter-spacing: 8px;">LOT REGISTRATION</h1>
 
                     <?php
 
                     if (isset($msg)) {
-                        echo $msg; 
+                        echo $msg;
                     }
 
                     ?>
 
 
                     <form action="" method="post">
-                        <div class="shadow border p-4 bg-dark rounded-4">
+                        <div class="shadow border border-4 p-4 bg-dark rounded-4">
                             <div class="form-group mb-3 d-flex gap-1">
                                 <input type="number" class="form-control" placeholder="CN-number" name="cn_number">
                                 <!-- <button class="btn btn-sm btn-dark" onclick="addLots()">+</button> -->
@@ -61,16 +63,17 @@ if (isset($_POST['btn_submit'])) {
                                 </select>
                             </div>
                             <div class="form-group mb-3 d-flex gap-1">
-                                <textarea name="remarks" class="form-control" placeholder="remarks" id=""></textarea>
+                                <textarea name="remarks" class="form-control" placeholder="Remarks" id=""></textarea>
                             </div>
                             <div class="form-group mb-3 text-uppercase d-flex gap-1 justify-content-between">
-                                 <button type="submit" name="btn_submit" class="btn btn-sm btn-success text-uppercase  ">submit</button>
-                                <a href="view.php" name="btn_submit" class="btn btn-sm btn-success ">view all data</a> 
+                                <button type="submit" name="btn_submit"
+                                    class="btn btn-sm btn-success text-uppercase  ">submit</button>
+                                <a href="view.php" name="btn_submit" class="btn btn-sm btn-success ">View all data</a>
                             </div>
-                           
+
                         </div>
                     </form>
-                     
+
                 </div>
             </div>
         </div>
