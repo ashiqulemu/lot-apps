@@ -92,7 +92,7 @@ if (isset($_GET['msg'])) {
 
                             ?>
                             <tr>
-                                
+                               
                                 <td> <?php echo $user['cn_number']; ?> </td>
                                 <td> <?php echo $user['lot_number']; ?> </td>
                                 <td> <?php echo $user['lot_selection']; ?> </td>

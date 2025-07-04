@@ -101,8 +101,11 @@ class crud
 
       $search_cn_number = $_POST['search_cn_number'];
       
+      // $query = "select DISTINCT * from infos where 
+      //   cn_number='$search_cn_number'"; 
+      
       $query = "select DISTINCT * from infos where 
-        cn_number='$search_cn_number'"; 
+        cn_number LIKE '%$search_cn_number%'"; 
 
       $res = mysqli_query($this->conn, $query); 
       if($res){
