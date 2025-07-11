@@ -130,7 +130,7 @@ class crud
     $query = "DELETE FROM infos WHERE id='$id'";
     $res = mysqli_query($this->conn, $query);
     if ($res) {
-      header('Location:view.php');
+      header('Location:search.php');
 
     }
   }
